@@ -14,8 +14,10 @@ type Level struct {
 }
 
 // CreateLevel - level constructor
-func CreateLevel(objects []GameObject) *Level {
-	return &Level{objects}
+func CreateLevel() *Level {
+	var level = &Level{[]GameObject{}}
+	level.GameObjects = append(level.GameObjects, CreatePlayer(level, triangle, 1))
+	return level
 }
 
 // RegisterGameObject - register a new game object in this level instance

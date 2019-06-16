@@ -13,7 +13,7 @@ func onNewFrame() {
 }
 
 func onReady() {
-	level = CreateLevel([]GameObject{CreatePlayer(triangle, 0.1)})
+	level = CreateLevel()
 }
 
 func CreateGame() {
