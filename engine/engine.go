@@ -3,7 +3,7 @@ package engine
 import (
 	"fmt"
 	"log"
-	"somegame/objects"
+	"somegame/common"
 	"strings"
 
 	"github.com/go-gl/gl/v2.1/gl"
@@ -66,7 +66,13 @@ func RegisterOnKeyCallback(onKeyCallback glfw.KeyCallback) {
 	}
 }
 
-func RenderGameObject(gameObject objects.GameObject) {
+func RenderGameObject(gameObject common.GameObject) {
+	var vertices = make([]float32, len(gameObject.GetVertices()))
+	for i := 0; i < len(gameObject.GetVertices()); i = i + 3 {
+		vertices[i] = (gameObject.GetVertices()[i] * gameObject.GetSize()) + gameObject.GetPosition().X
+		vertices[i+1] = (gameObject.GetVertices()[i+1] * gameObject.GetSize()) + gameObject.GetPosition().Y
+		vertices[i+2] = 0
+	}
 	vao := makeVao(vertices)
 	draw(vao)
 }
